@@ -7,6 +7,8 @@ import org.springframework.boot.actuate.audit.AuditEventRepository;
 import org.springframework.boot.actuate.audit.listener.AbstractAuditListener;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 /**
  * Replaces the default org.springframework.boot.actuate.audit.listener.AuditListener.
  */
@@ -15,11 +17,12 @@ public class AuditEventListener extends AbstractAuditListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuditEventListener.class);
 
-    private final AuditEventRepository auditEventRepository;
+    @Resource
+    private AuditEventRepository auditEventRepository;
 
-    public AuditEventListener(AuditEventRepository auditEventRepository) {
-        this.auditEventRepository = auditEventRepository;
-    }
+//    public AuditEventListener(AuditEventRepository auditEventRepository) {
+//        this.auditEventRepository = auditEventRepository;
+//    }
 
     @Override
     protected void onAuditEvent(AuditEvent event) {
@@ -33,5 +36,7 @@ public class AuditEventListener extends AbstractAuditListener {
 
         auditEventRepository.add(event);
     }
+
+
 
 }

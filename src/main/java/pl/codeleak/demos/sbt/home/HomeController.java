@@ -22,4 +22,18 @@ class HomeController {
         return System.getProperties();
     }
 
+    @GetMapping("/th-form")
+    String thForm(Model model) {
+        model.addAttribute("now", LocalDateTime.now());
+        return "th-form";
+    }
+
+    @GetMapping("/th-objects")
+    String thObjects(Model model) {
+        model.addAttribute("now", LocalDateTime.now());
+        return "th-objects";
+    }
+
+
+
 }
